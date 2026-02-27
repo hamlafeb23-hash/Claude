@@ -1795,10 +1795,10 @@
 
 <footer style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
   <p><span style="font-weight:700; color:#111;">Nanomeeters</span> — Built for the semiconductor industry</p>
-  <p>For queries write to: <a href="mailto:contact@nanomeeters.com">contact&#64;nanomeeters.com</a></p>
+  <p>For queries write to: <a href="/cdn-cgi/l/email-protection#c3a0acadb7a2a0b783ada2adacaea6a6b7a6b1b0eda0acae">contact&#64;nanomeeters.com</a></p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let allJobs = [];
 let filtered = [];
 
@@ -1821,6 +1821,7 @@ function parseCSV(csv) {
   const colLocation = idx('Location');
   const colType = idx('Job Type');
   const colDept = idx('Department');
+  const colWorkmode = idx('Work Mode');
   const colApply = idx('Apply URL');
   const colPosted = idx('Posted Date');
 
@@ -1836,7 +1837,7 @@ function parseCSV(csv) {
       location: colLocation >= 0 ? row[colLocation]?.trim() : '',
       type: colType >= 0 ? row[colType]?.trim() : '',
       dept: colDept >= 0 ? row[colDept]?.trim() : '',
-      workmode: '',
+      workmode: colWorkmode >= 0 ? row[colWorkmode]?.trim() : '',
       applyUrl: colApply >= 0 ? row[colApply]?.trim() : '#',
       posted: colPosted >= 0 ? row[colPosted]?.trim() : '',
     });
@@ -2534,12 +2535,4 @@ function closePostJobModal(e) {
     <div class="modal-icon">📡</div>
     <h2>Post a Job on Nanomeeters</h2>
     <p>Reach thousands of semiconductor engineers actively looking for their next role. We offer <strong>free job postings</strong> for employers during our launch period.</p>
-    <a class="modal-email-btn" href="mailto:contact@nanomeeters.com?subject=Job Posting Request&body=Hi Nanomeeters team,%0A%0AI'd like to post a job opening.%0A%0AJob Title:%0ACompany:%0ALocation:%0AJob Type:%0ADescription:%0A%0AThanks!">
-      contact@nanomeeters.com
-    </a>
-    <div class="modal-badge">✓ Free during launch</div>
-  </div>
-</div>
-
-</body>
-</html>
+    <a class="modal-email-btn" href="/cdn-cgi/l/email-protection#ed8e8283998c8e99ad838c838280888899889f9ec38e8280d29e988f87888e99d0a7828fcdbd829e9984838acdbf889c98889e99cb8f828994d0a584cda38c838280888899889f9ecd99888
