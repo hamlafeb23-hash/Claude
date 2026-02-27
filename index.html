@@ -248,7 +248,7 @@
     padding: 0 24px 80px;
   }
 
-  /* ── FILTERS ── */
+  /* -- FILTERS -- */
   .filters-wrapper {
     margin-bottom: 20px;
   }
@@ -1172,7 +1172,7 @@
     cursor: pointer;
   }
 
-  /* ── JOB DESCRIPTION PAGE ── */
+  /* -- JOB DESCRIPTION PAGE -- */
   #jobPage {
     display: none;
     position: relative;
@@ -1487,7 +1487,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.5);
     backdrop-filter: blur(6px);
     z-index: 1000;
     align-items: center;
@@ -1495,13 +1495,12 @@
   }
   .modal-overlay.active { display: flex; }
   .modal-card {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    padding: 40px 36px;
-    max-width: 460px;
-    width: 90%;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+    padding: 48px 40px 40px;
+    max-width: 480px;
+    width: 92%;
     text-align: center;
     position: relative;
     animation: modalIn 0.22s cubic-bezier(0.34,1.4,0.64,1);
@@ -1512,63 +1511,63 @@
   }
   .modal-close {
     position: absolute;
-    top: 14px; right: 16px;
+    top: 18px; right: 20px;
     background: none; border: none;
-    color: var(--text-muted); font-size: 20px;
+    color: #999; font-size: 22px;
     cursor: pointer; line-height: 1;
     padding: 4px 8px;
     border-radius: 6px;
-    transition: background 0.15s;
+    transition: color 0.15s;
   }
-  .modal-close:hover { background: var(--border); }
+  .modal-close:hover { color: #333; }
   .modal-icon {
-    width: 56px; height: 56px;
-    background: linear-gradient(135deg, #1A56C4, #2E6FE0);
-    border-radius: 14px;
+    width: 80px; height: 80px;
+    background: linear-gradient(145deg, #1A56C4, #3B7DE8);
+    border-radius: 20px;
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 26px;
+    margin: 0 auto 24px;
+    font-size: 38px;
   }
   .modal-card h2 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 22px; font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--text);
+    font-size: 28px; font-weight: 800;
+    margin-bottom: 14px;
+    color: #111;
+    letter-spacing: -0.5px;
   }
   .modal-card p {
-    color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 24px;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 28px;
   }
   .modal-email-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #1A56C4, #2E6FE0);
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #1A56C4, #3B7DE8);
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 14px;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     transition: opacity 0.2s, transform 0.2s;
+    box-sizing: border-box;
   }
-  .modal-email-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .modal-email-btn:hover { opacity: 0.9; transform: translateY(-1px); }
   .modal-badge {
     display: inline-block;
-    margin-top: 16px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: rgba(0,255,163,0.1);
-    border: 1px solid rgba(0,255,163,0.25);
-    color: var(--success);
-    font-size: 12px;
+    margin-top: 18px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    background: rgba(0,200,130,0.08);
+    border: 1px solid rgba(0,200,130,0.3);
+    color: #16a34a;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.3px;
   }
 
 </style>
@@ -1594,7 +1593,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Live Opportunities</div>
+
   <h1>Semiconductor<br><em>Career Hub</em></h1>
   <p>Discover top roles in chip design, fabrication, EDA, and advanced packaging — from startups to global leaders.</p>
   <div class="stats-row">
@@ -1717,6 +1716,29 @@
         </div>
       </div>
 
+      <!-- Company Dropdown -->
+      <div class="filter-dropdown" id="dd-company">
+        <button class="filter-trigger" id="trigger-company" onclick="toggleDropdown('company')">
+          <span class="filter-trigger-label">
+            <span class="filter-trigger-icon">🏭</span>
+            <span id="label-company">Company</span>
+          </span>
+          <span class="filter-badge" id="badge-company" style="display:none"></span>
+          <svg class="filter-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="filter-panel" id="panel-company">
+          <div class="filter-panel-header">
+            <span class="filter-panel-title">Company</span>
+            <button class="filter-panel-clear" onclick="clearDropdown('company')">Clear</button>
+          </div>
+          <div class="filter-panel-search">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3A5580" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" placeholder="Search companies…" oninput="filterPanelSearch(this,'company')" id="ps-company">
+          </div>
+          <div class="filter-options-list" id="opts-company"></div>
+        </div>
+      </div>
+
 
     </div>
 
@@ -1773,19 +1795,19 @@
 
 <footer style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
   <p><span style="font-weight:700; color:#111;">Nanomeeters</span> — Built for the semiconductor industry</p>
-  <p>For queries write to: <a href="/cdn-cgi/l/email-protection#7e1d11100a1f1d0a3e101f1011131b1b0a1b0c0d501d1113"><span class="__cf_email__" data-cfemail="97f4f8f9e3f6f4e3d7f9f6f9f8faf2f2e3f2e5e4b9f4f8fa">[email&#160;protected]</span></a></p>
+  <p>For queries write to: <a href="mailto:contact@nanomeeters.com">contact&#64;nanomeeters.com</a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 let allJobs = [];
 let filtered = [];
 
-// ── SAMPLE DATA (fallback when sheet cannot be fetched) ──────
+// -- SAMPLE DATA (fallback when sheet cannot be fetched) ------
 function loadSampleData() {
   renderJobs([]);
 }
 
-// ── GOOGLE SHEETS LOADER ─────────────────────────────────────
+// -- GOOGLE SHEETS LOADER --------------------------------------
 
 function parseCSV(csv) {
   const lines = csv.trim().split('\n');
@@ -1835,7 +1857,7 @@ function parseCSVRow(line) {
   return result;
 }
 
-// ── RENDER ────────────────────────────────────────────────────
+// -- RENDER -----------------------------------------------------
 function renderJobs(jobs) {
   allJobs = jobs;
   buildFilters(jobs);
@@ -1843,8 +1865,8 @@ function renderJobs(jobs) {
   updateStats(jobs);
 }
 
-// ── DROPDOWN FILTER STATE ─────────────────────────────────────
-let activeFilters = { location: new Set(), type: new Set(), dept: new Set(), workmode: new Set() };
+// -- DROPDOWN FILTER STATE --------------------------------------
+let activeFilters = { location: new Set(), type: new Set(), dept: new Set(), workmode: new Set(), company: new Set() };
 let openDropdown = null;
 
 document.addEventListener('click', e => {
@@ -1865,7 +1887,7 @@ function toggleDropdown(key) {
 }
 
 function closeAllDropdowns() {
-  ['location','type','dept','workmode'].forEach(k => {
+  ['location','type','dept','workmode','company'].forEach(k => {
     document.getElementById(`panel-${k}`)?.classList.remove('open');
     document.getElementById(`trigger-${k}`)?.classList.remove('open');
   });
@@ -1873,17 +1895,19 @@ function closeAllDropdowns() {
 }
 
 function buildFilters(jobs) {
-  const counts = { location: {}, type: {}, dept: {}, workmode: {} };
+  const counts = { location: {}, type: {}, dept: {}, workmode: {}, company: {} };
   jobs.forEach(j => {
     if (j.location) counts.location[j.location] = (counts.location[j.location]||0)+1;
     if (j.type)     counts.type[j.type]         = (counts.type[j.type]||0)+1;
     if (j.dept)     counts.dept[j.dept]          = (counts.dept[j.dept]||0)+1;
     if (j.workmode) counts.workmode[j.workmode]  = (counts.workmode[j.workmode]||0)+1;
+    if (j.company)  counts.company[j.company]    = (counts.company[j.company]||0)+1;
   });
   buildOptionsList('location', counts.location);
   buildOptionsList('type', counts.type);
   buildOptionsList('dept', counts.dept);
   buildOptionsList('workmode', counts.workmode);
+  buildOptionsList('company', counts.company);
 }
 
 function buildOptionsList(key, countsObj) {
@@ -1927,7 +1951,7 @@ function updateTrigger(key) {
   const badge = document.getElementById(`badge-${key}`);
   const trigger = document.getElementById(`trigger-${key}`);
   const label = document.getElementById(`label-${key}`);
-  const labels = { location: 'Location', type: 'Job Type', dept: 'Department', workmode: 'Work Mode' };
+  const labels = { location: 'Location', type: 'Job Type', dept: 'Department', workmode: 'Work Mode', company: 'Company' };
   if (count === 0) {
     badge.style.display = 'none';
     trigger.classList.remove('has-value');
@@ -1949,8 +1973,8 @@ function updateActiveStrip() {
   if (!strip) return;
   strip.innerHTML = '';
   let total = 0;
-  const icons = { location: '📍', type: '💼', dept: '🏢', workmode: '🌐' };
-  ['location','type','dept','workmode'].forEach(key => {
+  const icons = { location: '📍', type: '💼', dept: '🏢', workmode: '🌐', company: '🏭' };
+  ['location','type','dept','workmode','company'].forEach(key => {
     activeFilters[key].forEach(val => {
       total++;
       const tag = document.createElement('div');
@@ -2001,6 +2025,7 @@ function applyFilters() {
     if (activeFilters.type.size && !activeFilters.type.has(j.type)) return false;
     if (activeFilters.dept.size && !activeFilters.dept.has(j.dept)) return false;
     if (activeFilters.workmode.size && !activeFilters.workmode.has(j.workmode)) return false;
+    if (activeFilters.company.size && !activeFilters.company.has(j.company)) return false;
     if (search && !`${j.title} ${j.company} ${j.dept}`.toLowerCase().includes(search)) return false;
     return true;
   });
@@ -2012,7 +2037,7 @@ function applyFilters() {
 }
 
 function clearFilters() {
-  ['location','type','dept','workmode'].forEach(k => {
+  ['location','type','dept','workmode','company'].forEach(k => {
     activeFilters[k].clear();
     document.querySelectorAll(`#opts-${k} .filter-option`).forEach(o => o.classList.remove('selected'));
     updateTrigger(k);
@@ -2146,7 +2171,7 @@ function updateStats(jobs) {
   document.getElementById('statLocations').textContent = new Set(jobs.map(j => j.location)).size;
 }
 
-// ── HELPERS ───────────────────────────────────────────────────
+// -- HELPERS ----------------------------------------------------
 function showLoading(msg) {
   const loading = document.getElementById('loadingState');
   if (loading) loading.style.display = 'flex';
@@ -2197,7 +2222,7 @@ function esc(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
 }
 
-// ── JOB DESCRIPTION PAGE ─────────────────────────────────────
+// -- JOB DESCRIPTION PAGE --------------------------------------
 function openDetail(job) {
   const desc = generateJobDescription(job);
   const daysAgo = getDaysAgo(job.posted);
@@ -2306,7 +2331,7 @@ window.addEventListener('popstate', () => {
   if (!window.location.hash) closeDetail();
 });
 
-// ── JOB DESCRIPTION GENERATOR ────────────────────────────────
+// -- JOB DESCRIPTION GENERATOR ---------------------------------
 function generateJobDescription(job) {
   const title = (job.title || '').toLowerCase();
   const dept = (job.dept || '').toLowerCase();
@@ -2454,7 +2479,7 @@ function getRequirements(title, dept) {
   ]);
 }
 
-// ── AUTO-LOAD FROM GOOGLE SHEETS ─────────────────────────────
+// -- AUTO-LOAD FROM GOOGLE SHEETS -----------------------------
 // Replace the URL below with your published Google Sheet CSV link:
 // (File → Share → Publish to web → Select sheet → CSV → Copy link)
 const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCAMBxVZ4PFtzFW9MwpSq31aOfm8erjVbJgoZGTsvM1WboBvR5WA6XQXgVLp-qN4YbyA9YToStVot0/pub?output=csv';
@@ -2486,7 +2511,7 @@ async function autoLoadSheet() {
 
 autoLoadSheet();
 
-// ── POST A JOB MODAL ─────────────────────────────────────────
+// -- POST A JOB MODAL ------------------------------------------
 function openPostJobModal() {
   document.getElementById('postJobModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -2501,6 +2526,7 @@ function closePostJobModal(e) {
 
 </script>
 
+
 <!-- POST A JOB MODAL -->
 <div class="modal-overlay" id="postJobModal" onclick="closePostJobModal(event)">
   <div class="modal-card">
@@ -2508,4 +2534,12 @@ function closePostJobModal(e) {
     <div class="modal-icon">📡</div>
     <h2>Post a Job on Nanomeeters</h2>
     <p>Reach thousands of semiconductor engineers actively looking for their next role. We offer <strong>free job postings</strong> for employers during our launch period.</p>
-    <a class="modal-email-btn" href="/cdn-cgi/l/email-protection#e2818d8c96838196a28c838c8d8f878796879091cc818d8fdd919
+    <a class="modal-email-btn" href="mailto:contact@nanomeeters.com?subject=Job Posting Request&body=Hi Nanomeeters team,%0A%0AI'd like to post a job opening.%0A%0AJob Title:%0ACompany:%0ALocation:%0AJob Type:%0ADescription:%0A%0AThanks!">
+      contact@nanomeeters.com
+    </a>
+    <div class="modal-badge">✓ Free during launch</div>
+  </div>
+</div>
+
+</body>
+</html>
