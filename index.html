@@ -337,19 +337,19 @@
   }
 
   .filter-trigger:hover {
-    border-color: rgba(0,212,255,0.35);
+    border-color: var(--accent);
     color: var(--text);
   }
 
   .filter-trigger.has-value {
     border-color: var(--accent);
-    background: rgba(0,212,255,0.08);
+    background: rgba(27,95,204,0.08);
     color: var(--accent);
   }
 
   .filter-trigger.open {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+    box-shadow: 0 0 0 3px rgba(27,95,204,0.10);
     color: var(--text);
     background: var(--surface);
   }
@@ -373,7 +373,7 @@
     height: 18px;
     border-radius: 50%;
     background: var(--accent);
-    color: #050A14;
+    color: #fff;
     font-size: 10px;
     font-weight: 700;
     line-height: 1;
@@ -398,10 +398,10 @@
     top: calc(100% + 8px);
     left: 0;
     min-width: 220px;
-    background: #0D1B30;
-    border: 1px solid rgba(0,212,255,0.2);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 14px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,212,255,0.05);
+    box-shadow: var(--shadow-lg);
     z-index: 50;
     overflow: hidden;
     opacity: 0;
@@ -443,7 +443,7 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  .filter-panel-clear:hover { color: #ff9090; }
+  .filter-panel-clear:hover { color: var(--accent); }
 
   .filter-panel-search {
     padding: 8px 14px;
@@ -486,9 +486,9 @@
     user-select: none;
   }
 
-  .filter-option:hover { background: rgba(0,212,255,0.05); }
+  .filter-option:hover { background: rgba(27,95,204,0.05); }
 
-  .filter-option.selected { background: rgba(0,212,255,0.07); }
+  .filter-option.selected { background: rgba(27,95,204,0.08); }
 
   .filter-option-check {
     width: 16px;
@@ -525,7 +525,7 @@
   .filter-option-count {
     font-size: 11px;
     color: var(--text-dim);
-    background: var(--surface);
+    background: var(--surface2);
     border-radius: 10px;
     padding: 1px 7px;
   }
@@ -577,8 +577,8 @@
     align-items: center;
     gap: 5px;
     padding: 4px 10px;
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.2);
+    background: rgba(27,95,204,0.07);
+    border: 1px solid rgba(27,95,204,0.18);
     border-radius: 20px;
     font-size: 12px;
     color: var(--accent);
@@ -727,9 +727,9 @@
   }
 
   .job-card:hover {
-    border-color: rgba(0,212,255,0.35);
+    border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 8px 40px rgba(0,212,255,0.08);
+    box-shadow: 0 8px 24px rgba(27,95,204,0.10);
   }
 
   .job-title {
@@ -864,7 +864,7 @@
   .apply-btn:hover {
     opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,212,255,0.3);
+    box-shadow: 0 6px 20px rgba(27,95,204,0.30);
   }
 
   /* LOADING */
@@ -1148,7 +1148,7 @@
   .detail-apply-btn:hover {
     opacity: 0.9;
     transform: translateY(-1px);
-    box-shadow: 0 8px 28px rgba(0,212,255,0.35);
+    box-shadow: 0 8px 28px rgba(27,95,204,0.30);
   }
 
   .detail-save-btn {
@@ -1236,7 +1236,7 @@
     color: var(--accent);
     flex-shrink: 0;
     text-transform: uppercase;
-    box-shadow: 0 0 40px rgba(0,212,255,0.08);
+    box-shadow: 0 0 40px rgba(27,95,204,0.06);
   }
 
   .job-page-title-block {
@@ -1288,7 +1288,7 @@
   .job-page-apply-btn:hover {
     opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(0,212,255,0.35);
+    box-shadow: 0 10px 32px rgba(27,95,204,0.30);
   }
 
   .job-page-meta-grid {
@@ -1369,10 +1369,10 @@
     margin-top: 48px;
     padding: 28px;
     background: var(--surface);
-    border: 1px solid rgba(0,212,255,0.2);
+    border: 1px solid var(--border);
     border-radius: 16px;
     text-align: center;
-    background: linear-gradient(135deg, rgba(0,102,255,0.06), rgba(0,212,255,0.04));
+    background: linear-gradient(135deg, rgba(27,95,204,0.05), rgba(27,95,204,0.02));
   }
 
   .job-page-bottom-apply h3 {
@@ -1425,6 +1425,11 @@
   }
 
   footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; text-underline-offset: 2px; }
+  .footer-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .footer-links a { font-size: 13px; color: var(--text-dim); font-weight: 500; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-divider { color: var(--border); }
 
   /* RESPONSIVE */
   @media (max-width: 700px) {
@@ -1433,6 +1438,161 @@
     }
 
     .filter-group, .search-input { width: 100%; min-width: unset; }
+  }
+
+  /* LEGAL MODAL */
+  .legal-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px 16px;
+    overflow-y: auto;
+  }
+  .legal-modal-overlay.active { display: flex; }
+  .legal-modal-card {
+    background: var(--surface);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 680px;
+    padding: 48px 52px;
+    position: relative;
+    margin: auto;
+    animation: modalIn 0.22s cubic-bezier(0.34,1.2,0.64,1);
+  }
+  .legal-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .legal-modal-close:hover { background: var(--border); color: var(--text); }
+  .legal-modal-brand {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .legal-modal-doc-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .legal-modal-date {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .legal-modal-body p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .legal-modal-body h2 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 8px;
+    padding-top: 4px;
+  }
+  .legal-modal-body ul {
+    margin: 8px 0 16px 0;
+    padding-left: 20px;
+  }
+  .legal-modal-body ul li {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 6px;
+  }
+  .legal-modal-footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    .legal-modal-card { padding: 32px 24px; }
+  }
+
+  /* SKILLS TAGS */
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .skill-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: 100px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.1px;
+  }
+
+  /* SALARY IN HERO */
+  .job-page-salary {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--success);
+    letter-spacing: 0.1px;
+  }
+
+  /* BENEFITS UNKNOWN NOTICE */
+  .benefits-unknown {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+    background: rgba(250,180,0,0.06);
+    border: 1px solid rgba(220,160,0,0.2);
+    border-radius: 10px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .benefits-unknown svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #b07a00;
+  }
+  .benefits-unknown strong {
+    color: var(--text);
+  }
+  .benefits-unknown a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   /* DISCLAIMER */
@@ -1542,7 +1702,10 @@
     margin-bottom: 28px;
   }
   .modal-email-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
     padding: 16px 24px;
     background: linear-gradient(135deg, #1A56C4, #3B7DE8);
@@ -1558,6 +1721,19 @@
     box-sizing: border-box;
   }
   .modal-email-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .modal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 20px;
+    background: rgba(4,120,87,0.08);
+    border: 1px solid rgba(4,120,87,0.2);
+    border-radius: 100px;
+    color: #047857;
+    font-size: 13px;
+    font-weight: 600;
+  }
   .modal-badge {
     display: inline-block;
     margin-top: 18px;
@@ -1793,12 +1969,18 @@
 <!-- DETAIL OVERLAY (kept but unused on full page mode) -->
 <div class="detail-overlay" id="detailOverlay"></div>
 
-<footer style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-  <p><span style="font-weight:700; color:#111;">Nanomeeters</span> — Built for the semiconductor industry</p>
-  <p>For queries write to: <a href="/cdn-cgi/l/email-protection#c3a0acadb7a2a0b783ada2adacaea6a6b7a6b1b0eda0acae">contact&#64;nanomeeters.com</a></p>
+<footer>
+  <p style="margin-bottom:14px;"><span style="font-weight:700; color:#111;">Nanomeeters</span> — Built for the semiconductor industry</p>
+  <div class="footer-links">
+    <a href="#" onclick="openLegalModal('terms'); return false;">Terms of Service</a>
+    <span class="footer-divider">|</span>
+    <a href="#" onclick="openLegalModal('privacy'); return false;">Privacy Policy</a>
+    <span class="footer-divider">|</span>
+    <a href="mailto:contact@nanomeeters.com">Queries: contact@nanomeeters.com</a>
+  </div>
+  <p style="margin-top:14px; font-size:12px; color:var(--text-dim);">© <span class="copyright-year">2025</span> Nanomeeters. All rights reserved.</p>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 let allJobs = [];
 let filtered = [];
 
@@ -1816,30 +1998,61 @@ function parseCSV(csv) {
   const headers = parseCSVRow(lines[0]).map(h => h.trim());
   const idx = (name) => headers.findIndex(h => h.toLowerCase() === name.toLowerCase());
 
-  const colTitle = idx('Job Title');
-  const colCompany = idx('Company');
-  const colLocation = idx('Location');
-  const colType = idx('Job Type');
-  const colDept = idx('Department');
-  const colWorkmode = idx('Work Mode');
-  const colApply = idx('Apply URL');
-  const colPosted = idx('Posted Date');
+  // Support both legacy sheet columns and new master CSV columns
+  const colTitle       = idx('title')       >= 0 ? idx('title')       : idx('Job Title');
+  const colCompany     = idx('organization')>= 0 ? idx('organization'): idx('Company');
+  const colLocation    = idx('location')    >= 0 ? idx('location')    : idx('Location');
+  const colType        = idx('employment_type') >= 0 ? idx('employment_type') : idx('Job Type');
+  const colDept        = idx('ai_taxonomies_a/0') >= 0 ? idx('ai_taxonomies_a/0') : idx('Department');
+  const colWorkmode    = idx('work_arrangement') >= 0 ? idx('work_arrangement') : idx('ai_work_arrangement') >= 0 ? idx('ai_work_arrangement') : idx('Work Mode');
+  const colApply       = idx('apply_url')   >= 0 ? idx('apply_url')   : idx('Apply URL');
+  const colPosted      = idx('date_posted') >= 0 ? idx('date_posted') : idx('Posted Date');
+  const colCountry     = idx('country');
+  const colExperience  = idx('experience_level');
+  const colEducation   = idx('education_requirements');
+  const colSalary      = idx('salary');
+  const colJobDesc     = idx('job_description');
+  const colRequirements= idx('requirements_summary');
+  const colSkills      = idx('key_skills');
+  const colBenefits    = idx('benefits');
+  const colBenSrc      = idx('benefits_source');
+  const colOrgUrl      = idx('organization_url');
 
   const jobs = [];
   for (let i = 1; i < lines.length; i++) {
     const row = parseCSVRow(lines[i]);
     if (!row.length || !row[0]) continue;
-    // Skip repeated header rows
-    if (row[0].trim().toLowerCase() === 'job title') continue;
+    if (row[0].trim().toLowerCase() === 'title' || row[0].trim().toLowerCase() === 'job title') continue;
+
+    const g = (col) => col >= 0 ? (row[col] || '').trim() : '';
+
+    // Parse pipe-separated skills into array
+    const skillsRaw = g(colSkills);
+    const skills = skillsRaw ? skillsRaw.split('|').map(s => s.trim()).filter(Boolean) : [];
+
+    // Parse pipe-separated benefits into array
+    const benefitsRaw = g(colBenefits);
+    const benefits = benefitsRaw ? benefitsRaw.split('|').map(b => b.trim()).filter(Boolean) : [];
+
     jobs.push({
-      title: colTitle >= 0 ? row[colTitle]?.trim() : '',
-      company: colCompany >= 0 ? row[colCompany]?.trim() : '',
-      location: colLocation >= 0 ? row[colLocation]?.trim() : '',
-      type: colType >= 0 ? row[colType]?.trim() : '',
-      dept: colDept >= 0 ? row[colDept]?.trim() : '',
-      workmode: colWorkmode >= 0 ? row[colWorkmode]?.trim() : '',
-      applyUrl: colApply >= 0 ? row[colApply]?.trim() : '#',
-      posted: colPosted >= 0 ? row[colPosted]?.trim() : '',
+      title:        g(colTitle),
+      company:      g(colCompany),
+      location:     g(colLocation),
+      country:      g(colCountry),
+      type:         g(colType),
+      dept:         g(colDept),
+      workmode:     g(colWorkmode),
+      applyUrl:     g(colApply) || '#',
+      posted:       g(colPosted),
+      experience:   g(colExperience),
+      education:    g(colEducation),
+      salary:       g(colSalary),
+      orgUrl:       g(colOrgUrl),
+      jobDesc:      g(colJobDesc),
+      requirements: g(colRequirements),
+      skills:       skills,
+      benefits:     benefits,
+      benefitsSrc:  g(colBenSrc),
     });
   }
   return jobs.filter(j => j.title);
@@ -1864,6 +2077,7 @@ function renderJobs(jobs) {
   buildFilters(jobs);
   applyFilters();
   updateStats(jobs);
+  refreshFilterCounts();
 }
 
 // -- DROPDOWN FILTER STATE --------------------------------------
@@ -1896,6 +2110,7 @@ function closeAllDropdowns() {
 }
 
 function buildFilters(jobs) {
+  // Called once on load — builds initial option lists from all jobs
   const counts = { location: {}, type: {}, dept: {}, workmode: {}, company: {} };
   jobs.forEach(j => {
     if (j.location) counts.location[j.location] = (counts.location[j.location]||0)+1;
@@ -1909,6 +2124,45 @@ function buildFilters(jobs) {
   buildOptionsList('dept', counts.dept);
   buildOptionsList('workmode', counts.workmode);
   buildOptionsList('company', counts.company);
+}
+
+function refreshFilterCounts() {
+  // After each filter change, recount each dimension using the OTHER active filters
+  // so dropdowns show how many results each option would yield given current selections.
+  const dims = ['location', 'type', 'dept', 'workmode', 'company'];
+  const fieldMap = { location: 'location', type: 'type', dept: 'dept', workmode: 'workmode', company: 'company' };
+
+  dims.forEach(dim => {
+    // Build a filtered subset that excludes this dimension's filter
+    const subset = allJobs.filter(j => {
+      for (const d of dims) {
+        if (d === dim) continue; // skip this dimension
+        if (activeFilters[d].size && !activeFilters[d].has(j[fieldMap[d]])) return false;
+      }
+      return true;
+    });
+
+    // Recount
+    const counts = {};
+    subset.forEach(j => {
+      const val = j[fieldMap[dim]];
+      if (val) counts[val] = (counts[val] || 0) + 1;
+    });
+
+    // Update counts in the DOM (don't rebuild — just update count spans & hide zero-count options)
+    const container = document.getElementById(`opts-${dim}`);
+    if (!container) return;
+    container.querySelectorAll('.filter-option').forEach(el => {
+      const val = el.dataset.val;
+      const n = counts[val] || 0;
+      const countEl = el.querySelector('.filter-option-count');
+      if (countEl) countEl.textContent = n;
+      // Dim out options that would return zero results (but keep them visible if selected)
+      const isSelected = activeFilters[dim].has(val);
+      el.style.opacity = (n === 0 && !isSelected) ? '0.35' : '1';
+      el.style.pointerEvents = (n === 0 && !isSelected) ? 'none' : '';
+    });
+  });
 }
 
 function buildOptionsList(key, countsObj) {
@@ -1925,7 +2179,7 @@ function makeOption(key, val, count) {
   div.dataset.val = val;
   div.innerHTML = `
     <span class="filter-option-check">
-      <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="#050A14" stroke-width="2.2" stroke-linecap="round"><polyline points="1 4 4 7 9 1"/></svg>
+      <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><polyline points="1 4 4 7 9 1"/></svg>
     </span>
     <span class="filter-option-text">${escHtml(val)}</span>
     <span class="filter-option-count">${count}</span>
@@ -1945,6 +2199,7 @@ function toggleOption(key, val, el) {
   updateTrigger(key);
   updateActiveStrip();
   applyFilters();
+  refreshFilterCounts();
 }
 
 function updateTrigger(key) {
@@ -2005,10 +2260,15 @@ function removeFilter(key, val) {
 
 function clearDropdown(key) {
   activeFilters[key].clear();
-  document.querySelectorAll(`#opts-${key} .filter-option`).forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll(`#opts-${key} .filter-option`).forEach(o => {
+    o.classList.remove('selected');
+    o.style.opacity = '';
+    o.style.pointerEvents = '';
+  });
   updateTrigger(key);
   updateActiveStrip();
   applyFilters();
+  refreshFilterCounts();
 }
 
 function filterPanelSearch(input, key) {
@@ -2225,25 +2485,60 @@ function esc(str) {
 
 // -- JOB DESCRIPTION PAGE --------------------------------------
 function openDetail(job) {
-  const desc = generateJobDescription(job);
   const daysAgo = getDaysAgo(job.posted);
   const isNew = daysAgo !== null && daysAgo <= 7;
 
-
-
   const metaCards = [
-    { label: 'Location',    value: job.location  || '—', icon: '📍' },
-    { label: 'Job Type',    value: job.type ? formatJobType(job.type) : '—', icon: '💼' },
-    { label: 'Work Mode',   value: job.workmode  || '—', icon: workmodeIcon(job.workmode) },
-    { label: 'Department',  value: job.dept      || '—', icon: '🏢' },
-    { label: 'Posted',      value: formatDate(job.posted) || '—', icon: '📅' },
-    { label: 'Company',     value: job.company   || '—', icon: '🏭' },
+    { label: 'Location',   value: job.location   || '—', icon: '📍' },
+    { label: 'Job Type',   value: job.type ? formatJobType(job.type) : '—', icon: '💼' },
+    { label: 'Work Mode',  value: job.workmode   || '—', icon: workmodeIcon(job.workmode) },
+    { label: 'Department', value: job.dept       || '—', icon: '🏢' },
+    { label: 'Experience', value: job.experience || '—', icon: '⏱️' },
+    { label: 'Posted',     value: formatDate(job.posted) || '—', icon: '📅' },
   ].map(m => `
     <div class="job-page-meta-card">
       <div class="job-page-meta-label">${m.label}</div>
       <div class="job-page-meta-value">${m.icon} ${esc(m.value)}</div>
     </div>
   `).join('');
+
+  // Skills tags
+  const skillsHtml = job.skills && job.skills.length
+    ? `<div class="job-page-section">
+        <div class="job-page-section-title">Key Skills &amp; Expertise</div>
+        <div class="skills-tags">
+          ${job.skills.map(s => `<span class="skill-tag">${esc(s)}</span>`).join('')}
+        </div>
+      </div>`
+    : '';
+
+  // Benefits – show real data or a "check career page" notice
+  const benefitsHtml = (job.benefits && job.benefits.length)
+    ? `<div class="job-page-section">
+        <div class="job-page-section-title">Benefits &amp; Perks</div>
+        <ul class="job-page-list">
+          ${job.benefits.map(b => `<li>${esc(b)}</li>`).join('')}
+        </ul>
+      </div>`
+    : `<div class="job-page-section">
+        <div class="job-page-section-title">Benefits &amp; Perks</div>
+        <div class="benefits-unknown">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div>
+            <strong>Benefits not listed here.</strong>
+            <span> Visit the <a href="${esc(job.applyUrl)}" target="_blank" rel="noopener">company's career page</a> for full compensation and benefits details.</span>
+          </div>
+        </div>
+      </div>`;
+
+  const salaryHtml = job.salary
+    ? `<div class="job-page-salary">💰 ${esc(job.salary)}</div>` : '';
+
+  const eduHtml = job.education
+    ? `<div class="job-page-section">
+        <div class="job-page-section-title">Education</div>
+        <p>${esc(job.education)}</p>
+      </div>` : '';
 
   document.getElementById('jobPageInner').innerHTML = `
     <button class="job-page-back" onclick="closeDetail()">
@@ -2255,6 +2550,7 @@ function openDetail(job) {
       <div class="job-page-title-block">
         <div class="job-page-title">${esc(job.title)}</div>
         <div class="job-page-company">${esc(job.company)}</div>
+        ${salaryHtml}
       </div>
       <div class="job-page-apply">
         <button class="job-page-apply-btn" onclick="applyJob('${esc(job.applyUrl)}')">Apply Now →</button>
@@ -2265,29 +2561,17 @@ function openDetail(job) {
 
     <div class="job-page-section">
       <div class="job-page-section-title">About the Role</div>
-      <p>${esc(desc.about)}</p>
-    </div>
-
-    <div class="job-page-section">
-      <div class="job-page-section-title">Key Responsibilities</div>
-      <ul class="job-page-list">
-        ${desc.responsibilities.map(r => `<li>${esc(r)}</li>`).join('')}
-      </ul>
+      <p>${esc(job.jobDesc || '')}</p>
     </div>
 
     <div class="job-page-section">
       <div class="job-page-section-title">Requirements</div>
-      <ul class="job-page-list">
-        ${desc.requirements.map(r => `<li>${esc(r)}</li>`).join('')}
-      </ul>
+      <p>${esc(job.requirements || '')}</p>
     </div>
 
-    <div class="job-page-section">
-      <div class="job-page-section-title">What We Offer</div>
-      <ul class="job-page-list">
-        ${desc.perks.map(p => `<li>${esc(p)}</li>`).join('')}
-      </ul>
-    </div>
+    ${eduHtml}
+    ${skillsHtml}
+    ${benefitsHtml}
 
     <div class="job-page-bottom-apply">
       <h3>Interested in this role?</h3>
@@ -2300,11 +2584,10 @@ function openDetail(job) {
     </div>
   `;
 
-  // Show job page, hide home
   document.getElementById('homePage').classList.add('hidden');
   document.getElementById('jobPage').classList.add('active');
   document.getElementById('jobPageInner').classList.remove('page-fade-in');
-  void document.getElementById('jobPageInner').offsetWidth; // reflow to re-trigger animation
+  void document.getElementById('jobPageInner').offsetWidth;
   document.getElementById('jobPageInner').classList.add('page-fade-in');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   window.location.hash = 'job';
@@ -2332,161 +2615,15 @@ window.addEventListener('popstate', () => {
   if (!window.location.hash) closeDetail();
 });
 
-// -- JOB DESCRIPTION GENERATOR ---------------------------------
-function generateJobDescription(job) {
-  const title = (job.title || '').toLowerCase();
-  const dept = (job.dept || '').toLowerCase();
-  const company = job.company || 'the company';
-  const type = job.type || 'Full-time';
-
-  // About paragraph
-  const about = `${company} is seeking a talented ${job.title} to join our ${job.dept || 'engineering'} team. This is a ${type} opportunity for a driven professional to contribute to cutting-edge semiconductor innovation. You will work alongside world-class engineers to solve complex technical challenges and help shape the future of silicon technology.`;
-
-  // Responsibilities based on dept/title keywords
-  const responsibilities = getResponsibilities(title, dept);
-  const requirements = getRequirements(title, dept);
-  const perks = [
-    'Competitive salary and equity compensation package',
-    'Comprehensive health, dental, and vision insurance',
-    'Flexible work arrangements and remote options',
-    'Learning & development budget for conferences and courses',
-    'State-of-the-art EDA tools and compute resources',
-    'Collaborative, inclusive engineering culture',
-  ];
-
-  return { about, responsibilities, requirements, perks };
-}
-
-function getResponsibilities(title, dept) {
-  if (dept.includes('vlsi') || title.includes('rtl') || title.includes('asic')) {
-    return [
-      'Design and implement RTL blocks in SystemVerilog/VHDL for high-performance chips',
-      'Collaborate with architects to translate microarchitecture specs into synthesizable RTL',
-      'Work with physical design teams to meet timing, area, and power targets',
-      'Perform lint, CDC, and formal equivalence checks on RTL deliverables',
-      'Develop and maintain design documentation and review RTL with senior engineers',
-    ];
-  }
-  if (dept.includes('physical') || title.includes('physical') || title.includes('layout')) {
-    return [
-      'Execute floorplanning, placement, CTS, and routing for complex SoC designs',
-      'Drive PPA closure across all corners in advanced process nodes (3nm–7nm)',
-      'Analyze and resolve timing violations, IR drop, and electromigration issues',
-      'Develop and maintain physical design scripts and methodology flows',
-      'Interface with foundry and CAD teams on design rule and process updates',
-    ];
-  }
-  if (dept.includes('verif') || title.includes('verif') || title.includes('uvm')) {
-    return [
-      'Develop comprehensive UVM testbenches for complex IP and subsystem verification',
-      'Write directed and constrained-random tests to achieve coverage closure',
-      'Debug and root-cause RTL and verification issues with design engineers',
-      'Develop functional coverage models and drive coverage-driven verification',
-      'Support pre-silicon emulation and FPGA prototyping flows',
-    ];
-  }
-  if (dept.includes('analog') || title.includes('analog') || title.includes('mixed') || title.includes('rf')) {
-    return [
-      'Design and simulate analog/mixed-signal circuits in advanced CMOS nodes',
-      'Perform full characterization including PVT corners, Monte Carlo, and mismatch analysis',
-      'Collaborate with digital designers on ADC/DAC and high-speed interface integration',
-      'Create and review schematic and layout for analog IP blocks',
-      'Support bring-up, debug, and silicon characterization of tape-outs',
-    ];
-  }
-  if (dept.includes('process') || title.includes('process') || title.includes('yield')) {
-    return [
-      'Develop and optimize semiconductor process integration flows',
-      'Analyze yield data and implement root-cause corrective actions',
-      'Collaborate with equipment, materials, and integration teams on process improvements',
-      'Support new technology node qualifications from development to production',
-      'Generate and review process specifications and traveler documentation',
-    ];
-  }
-  if (dept.includes('eda') || title.includes('cad') || title.includes('eda')) {
-    return [
-      'Develop and maintain automated EDA flows for synthesis, P&R, and signoff',
-      'Evaluate and qualify new EDA tools and methodologies',
-      'Provide technical support to design teams on tool usage and flow issues',
-      'Drive scripting automation to improve design team productivity (Tcl, Python)',
-      'Interface with EDA vendors on bug reports, enhancements, and new features',
-    ];
-  }
-  if (dept.includes('fpga') || title.includes('fpga')) {
-    return [
-      'Design and implement FPGA-based systems for prototyping and production use',
-      'Develop RTL targeting FPGA architectures (Xilinx/Intel/Lattice devices)',
-      'Write and optimize timing constraints and physical implementation scripts',
-      'Debug hardware issues using logic analyzers, ILAs, and signal probes',
-      'Collaborate with software teams on firmware and driver integration',
-    ];
-  }
-  // Default
-  return [
-    'Lead technical development across key areas of the semiconductor design flow',
-    'Collaborate cross-functionally with design, verification, and physical implementation teams',
-    'Define and implement best practices and methodology improvements',
-    'Mentor junior engineers and participate in technical reviews',
-    'Contribute to tape-out planning, risk assessment, and execution',
-  ];
-}
-
-function getRequirements(title, dept) {
-  const base = [
-    'B.S. or M.S. in Electrical Engineering, Computer Engineering, or related field',
-  ];
-  if (dept.includes('vlsi') || title.includes('rtl') || title.includes('asic')) {
-    return base.concat([
-      '3+ years of RTL design experience in SystemVerilog or VHDL',
-      'Strong understanding of digital design principles and timing analysis',
-      'Experience with synthesis tools (Design Compiler, Genus) and STA flows',
-      'Familiarity with low-power design techniques (clock gating, power domains)',
-      'Excellent debugging skills and attention to micro-architectural detail',
-    ]);
-  }
-  if (dept.includes('verif') || title.includes('verif') || title.includes('uvm')) {
-    return base.concat([
-      '3+ years of hands-on UVM/SystemVerilog verification experience',
-      'Proficiency with simulation tools (VCS, Xcelium, Questa)',
-      'Experience with functional coverage, assertions, and formal verification',
-      'Strong scripting skills in Python or Perl for testbench automation',
-      'Familiarity with RISC-V, PCIe, DDR, or other industry-standard protocols is a plus',
-    ]);
-  }
-  if (dept.includes('analog') || title.includes('analog') || title.includes('rf')) {
-    return base.concat([
-      '4+ years of analog or mixed-signal IC design in sub-14nm CMOS',
-      'Expertise with SPICE simulation (Spectre, HSPICE) and layout tools (Virtuoso)',
-      'Deep understanding of transistor-level circuit design and layout parasitics',
-      'Experience taping out at advanced nodes (7nm, 5nm, or below) preferred',
-      'Strong analytical skills and attention to silicon correlation',
-    ]);
-  }
-  if (dept.includes('process') || title.includes('process') || title.includes('yield')) {
-    return base.concat([
-      '3+ years of semiconductor process or integration engineering experience',
-      'Familiarity with CMOS front-end or back-end processes (deposition, etch, litho)',
-      'Experience with statistical process control and yield improvement methodologies',
-      'Strong data analysis skills; proficiency with JMP, Python, or R',
-      'Ability to work effectively in a fab or cleanroom environment',
-    ]);
-  }
-  return base.concat([
-    '3+ years of relevant industry experience in semiconductor or related field',
-    'Strong problem-solving skills and ability to work in a fast-paced environment',
-    'Experience with industry-standard EDA tools and design flows',
-    'Excellent written and verbal communication skills',
-    'Team player with a proactive, ownership-driven mindset',
-  ]);
-}
-
 // -- AUTO-LOAD FROM GOOGLE SHEETS -----------------------------
-// Replace the URL below with your published Google Sheet CSV link:
-// (File → Share → Publish to web → Select sheet → CSV → Copy link)
-const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCAMBxVZ4PFtzFW9MwpSq31aOfm8erjVbJgoZGTsvM1WboBvR5WA6XQXgVLp-qN4YbyA9YToStVot0/pub?output=csv';
+// MASTER CSV: Upload nanomeeters_master.csv to Google Sheets, then:
+// File → Share → Publish to web → Sheet1 → CSV → Copy link and paste below.
+// The master CSV includes real job descriptions, requirements, skills,
+// and benefits (scraped from career pages where available).
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSyCMYQe08aSqgWBmE5DYC11lmJjWN17kVtnGiRwdKznkYHUS9_qqY-Pq4debApsVVCoCb-FoSc3qmm/pub?output=csv';
 
 async function autoLoadSheet() {
-  if (!SHEET_CSV_URL || SHEET_CSV_URL === 'YOUR_GOOGLE_SHEET_CSV_URL_HERE') {
+  if (!SHEET_CSV_URL || SHEET_CSV_URL === 'YOUR_MASTER_CSV_URL_HERE') {
     loadSampleData();
     return;
   }
@@ -2496,7 +2633,7 @@ async function autoLoadSheet() {
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
+    const timeout = setTimeout(() => controller.abort(), 8000);
     const res = await fetch(SHEET_CSV_URL, { signal: controller.signal });
     clearTimeout(timeout);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -2535,4 +2672,134 @@ function closePostJobModal(e) {
     <div class="modal-icon">📡</div>
     <h2>Post a Job on Nanomeeters</h2>
     <p>Reach thousands of semiconductor engineers actively looking for their next role. We offer <strong>free job postings</strong> for employers during our launch period.</p>
-    <a class="modal-email-btn" href="/cdn-cgi/l/email-protection#ed8e8283998c8e99ad838c838280888899889f9ec38e8280d29e988f87888e99d0a7828fcdbd829e9984838acdbf889c98889e99cb8f828994d0a584cda38c838280888899889f9ecd99888
+    <a class="modal-email-btn" href="mailto:contact@nanomeeters.com?subject=Job%20Posting%20Request&body=Hi%20Nanomeeters%20team%2C%0A%0AI%27d%20like%20to%20post%20a%20job%20on%20Nanomeeters.%0A%0ACompany%3A%20%0ARole%3A%20%0ALocation%3A%20%0A%0AThanks" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="16" rx="3"/><polyline points="2,4 12,13 22,4"/></svg>
+      contact@nanomeeters.com
+    </a>
+    <div class="modal-badge">✓ Free during launch</div>
+  </div>
+</div>
+
+<!-- LEGAL MODALS -->
+<div class="legal-modal-overlay" id="legalModal" onclick="closeLegalModalOutside(event)">
+  <div class="legal-modal-card">
+    <button class="legal-modal-close" onclick="closeLegalModal()">✕</button>
+    <div class="legal-modal-brand">NANOMEETERS</div>
+    <div class="legal-modal-doc-title" id="legalModalTitle"></div>
+    <div class="legal-modal-date" id="legalModalDate"></div>
+    <div class="legal-modal-body" id="legalModalBody"></div>
+    <div class="legal-modal-footer">© <span class="copyright-year">2025</span> Nanomeeters. All rights reserved.</div>
+  </div>
+</div>
+
+<script>
+const LEGAL_CONTENT = {
+  terms: {
+    title: 'Terms of Service',
+    date: 'Effective Date: February 27, 2025',
+    body: `
+      <p>Welcome to Nanomeeters (nanomeeters.com), a niche job board curating open positions from semiconductor companies across India, the USA, Germany, the Netherlands, Malaysia, and Singapore. By accessing or using this website, you agree to be bound by the following Terms of Service. If you do not agree, please discontinue use of the site immediately.</p>
+      <h2>1. Nature of the Service</h2>
+      <p>Nanomeeters is a read-only job listing aggregator. We curate and display publicly available job openings from semiconductor companies in select regions. We do not recruit, employ, screen candidates, or facilitate direct hiring. Clicking the Apply button on any listing will redirect you to the respective company's official careers page, where any application process is governed solely by that company's own terms.</p>
+      <h2>2. No Account or Data Collection</h2>
+      <p>Nanomeeters does not require you to create an account, register, or provide any personal information — including your name, email address, or resume — to browse job listings. We collect no personal data from visitors. See our Privacy Policy for complete details.</p>
+      <h2>3. Accuracy of Listings</h2>
+      <p>We strive to display accurate and current job postings. However, Nanomeeters makes no warranty that listings are complete, up to date, or free from error. Job postings are sourced from publicly available information and may not reflect real-time changes in vacancy status. We encourage users to verify all information directly on the employer's website.</p>
+      <h2>4. Third-Party Links</h2>
+      <p>All 'Apply' buttons and company links on Nanomeeters redirect to external, third-party websites operated by the respective employers. Nanomeeters has no control over the content, privacy practices, or accuracy of those external sites. Your use of third-party sites is subject to their own terms and conditions. We are not responsible for any loss or damage arising from your use of or reliance on third-party websites.</p>
+      <h2>5. Intellectual Property</h2>
+      <p>The Nanomeeters name, logo, website design, and original content are the property of Nanomeeters and are protected by applicable intellectual property laws. Job descriptions and company details remain the property of their respective owners. You may not reproduce, redistribute, or commercially exploit content from this site without prior written permission.</p>
+      <h2>6. Prohibited Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use automated tools, bots, scrapers, or crawlers to extract data from the site without our express written consent.</li>
+        <li>Interfere with the proper functioning of the website or its servers.</li>
+        <li>Use the site for any unlawful purpose or in violation of any applicable law or regulation.</li>
+        <li>Attempt to gain unauthorized access to any part of the site or its infrastructure.</li>
+      </ul>
+      <h2>7. Disclaimer of Warranties</h2>
+      <p>Nanomeeters is provided on an 'as is' and 'as available' basis without warranties of any kind, express or implied. We do not warrant that the service will be uninterrupted, error-free, or free of harmful components. To the fullest extent permitted by applicable law, Nanomeeters disclaims all warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+      <h2>8. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Nanomeeters and its operators shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of the website, including but not limited to reliance on job listings, interactions with employer sites, or inability to access the service.</p>
+      <h2>9. Governing Law</h2>
+      <p>These Terms of Service shall be governed by and construed in accordance with applicable law. Given that Nanomeeters operates internationally and serves users across India, the USA, Germany, the Netherlands, Malaysia, and Singapore, users are responsible for compliance with local laws applicable in their jurisdiction.</p>
+      <h2>10. Changes to These Terms</h2>
+      <p>We reserve the right to update these Terms of Service at any time. Changes will be posted on this page with a revised effective date. Your continued use of Nanomeeters after any modification constitutes acceptance of the updated terms.</p>
+      <h2>11. Contact</h2>
+      <p>For questions about these Terms of Service, please reach out via <a href="mailto:contact@nanomeeters.com" style="color:var(--accent)">contact@nanomeeters.com</a>.</p>
+    `
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    date: 'Effective Date: February 27, 2025',
+    body: `
+      <p>Nanomeeters (nanomeeters.com) is committed to your privacy. This Privacy Policy explains what information we collect (and what we do not collect), how we use information, and your rights as a visitor. Because our service is designed to be anonymous and frictionless, this policy is straightforward.</p>
+      <h2>1. Information We Do Not Collect</h2>
+      <p>Nanomeeters does not collect, store, or process any personally identifiable information (PII). Specifically:</p>
+      <ul>
+        <li>We do not require sign-up, registration, or login.</li>
+        <li>We do not collect your name, email address, phone number, postal address, or any contact details.</li>
+        <li>We do not collect resumes, CVs, or any application documents.</li>
+        <li>We do not process job applications. All applications are handled externally on the employer's website.</li>
+      </ul>
+      <h2>2. Automatically Collected Technical Data</h2>
+      <p>Like most websites, our server or hosting infrastructure may log standard technical data as part of normal internet operations. This may include:</p>
+      <ul>
+        <li>IP addresses (for security and server operation purposes)</li>
+        <li>Browser type and version</li>
+        <li>Pages visited and timestamps</li>
+        <li>Referring URLs</li>
+      </ul>
+      <p>This data is used solely for ensuring website security, diagnosing technical issues, and understanding aggregate usage patterns. It is not used to identify individual users and is not shared with third parties for marketing purposes.</p>
+      <h2>3. Cookies and Tracking</h2>
+      <p>Nanomeeters does not use any first-party tracking cookies, advertising cookies, or user profiling technologies. We do not run retargeting or behavioral advertising campaigns.</p>
+      <p>If third-party tools (such as analytics services) are used in the future, this policy will be updated accordingly, and users will be informed prior to any such change taking effect.</p>
+      <h2>4. Third-Party Employer Websites</h2>
+      <p>When you click the Apply button on any listing, you are redirected to the respective employer's careers page on their own website. Nanomeeters has no control over, and is not responsible for, the privacy practices of those external websites. We strongly encourage you to review the privacy policies of any employer site before submitting your personal details or application materials.</p>
+      <h2>5. No Data Sales or Sharing</h2>
+      <p>Because we collect no personal data, we do not sell, rent, trade, or share personal information with any third parties, advertisers, or data brokers. Full stop.</p>
+      <h2>6. Data Security</h2>
+      <p>While we do not store personal data, we take reasonable technical measures to protect the integrity and availability of our website and any server-side logs. Access to server logs is restricted and treated with appropriate confidentiality.</p>
+      <h2>7. Children's Privacy</h2>
+      <p>Nanomeeters is a professional job board intended for adult users seeking employment. We do not knowingly collect information from anyone under the age of 16. If you believe a minor has interacted with our site in a way that resulted in data collection, please contact us immediately.</p>
+      <h2>8. International Users</h2>
+      <p>Nanomeeters serves users across multiple jurisdictions, including India, the USA, Germany, the Netherlands, Malaysia, and Singapore. We aim to comply with the privacy expectations and applicable laws in each region. Users in the European Union or European Economic Area should note that, given we do not collect personal data, most GDPR obligations are not triggered. However, we respect the spirit of data minimisation and purpose limitation principles. Users in Singapore should note that our practices are consistent with the Personal Data Protection Act (PDPA) — and given that we collect no personal data, the PDPA's key obligations are similarly not triggered.</p>
+      <h2>9. Your Rights</h2>
+      <p>Since we do not collect or store personal data, there is generally no personal information to access, correct, or delete. If you have concerns about any data potentially collected through server logs or believe your data may have been processed, you may contact us to request clarification or deletion, as applicable.</p>
+      <h2>10. Changes to This Privacy Policy</h2>
+      <p>We reserve the right to update this Privacy Policy at any time. Significant changes — particularly any changes that would involve collecting personal data — will be communicated prominently on the website prior to taking effect. The effective date at the top of this page will reflect the most recent revision.</p>
+      <h2>11. Contact Us</h2>
+      <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at <a href="mailto:contact@nanomeeters.com" style="color:var(--accent)">contact@nanomeeters.com</a>.</p>
+    `
+  }
+};
+
+function openLegalModal(type) {
+  const doc = LEGAL_CONTENT[type];
+  document.getElementById('legalModalTitle').textContent = doc.title;
+  document.getElementById('legalModalDate').textContent = doc.date;
+  document.getElementById('legalModalBody').innerHTML = doc.body;
+  document.getElementById('legalModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLegalModal() {
+  document.getElementById('legalModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeLegalModalOutside(e) {
+  if (e.target === document.getElementById('legalModal')) closeLegalModal();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLegalModal();
+});
+  // Dynamic copyright year
+  document.querySelectorAll('.copyright-year').forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
+
+</body>
+</html>
