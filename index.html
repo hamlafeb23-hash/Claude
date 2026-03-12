@@ -1398,6 +1398,29 @@
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border);
   }
+  .job-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .job-highlights li {
+    padding-left: 20px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .job-highlights li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 13px;
+    top: 2px;
+  }
 
   .job-page-section p {
     font-size: 15px;
@@ -2672,15 +2695,21 @@ function openDetail(job) {
 
     <div class="job-page-meta-grid">${metaCards}</div>
 
+    ${job.jobDesc ? `
     <div class="job-page-section">
       <div class="job-page-section-title">About the Role</div>
-      <p>${esc(job.jobDesc || '')}</p>
-    </div>
+      <ul class="job-highlights">
+        ${job.jobDesc.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 20).slice(0,5).map(s => `<li>${esc(s.trim())}</li>`).join('')}
+      </ul>
+    </div>` : ''}
 
+    ${job.requirements ? `
     <div class="job-page-section">
       <div class="job-page-section-title">Requirements</div>
-      <p>${esc(job.requirements || '')}</p>
-    </div>
+      <ul class="job-highlights">
+        ${job.requirements.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 20).slice(0,5).map(s => `<li>${esc(s.trim())}</li>`).join('')}
+      </ul>
+    </div>` : ''}
 
     ${eduHtml}
     ${skillsHtml}
