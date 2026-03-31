@@ -1413,6 +1413,16 @@
     line-height: 1.6;
     color: var(--text);
   }
+  .ai-loading {
+    color: var(--text-dim) !important;
+    font-style: italic;
+    animation: pulse-text 1.5s ease-in-out infinite;
+  }
+  .ai-loading::before { display: none !important; }
+  @keyframes pulse-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
   .job-highlights li::before {
     content: '▸';
     position: absolute;
@@ -2063,11 +2073,11 @@
     <span class="footer-divider">|</span>
     <a href="#" onclick="openLegalModal('privacy'); return false;">Privacy Policy</a>
     <span class="footer-divider">|</span>
-    <a href="mailto:contact@nanomeeters.com">Queries: contact@nanomeeters.com</a>
+    <a href="/cdn-cgi/l/email-protection#b5d6dadbc1d4d6c1f5dbd4dbdad8d0d0c1d0c7c69bd6dad8">Queries: <span class="__cf_email__" data-cfemail="b8dbd7d6ccd9dbccf8d6d9d6d7d5ddddccddcacb96dbd7d5">[email&#160;protected]</span></a>
   </div>
   <p style="margin-top:14px; font-size:12px; color:var(--text-dim);">© <span class="copyright-year">2025</span> Nanomeeters. All rights reserved.</p>
 </footer>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let allJobs = [];
 let filtered = [];
 
@@ -2696,18 +2706,18 @@ function openDetail(job) {
     <div class="job-page-meta-grid">${metaCards}</div>
 
     ${job.jobDesc ? `
-    <div class="job-page-section">
+    <div class="job-page-section" id="aboutRoleSection">
       <div class="job-page-section-title">About the Role</div>
-      <ul class="job-highlights">
-        ${job.jobDesc.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 20).slice(0,5).map(s => `<li>${esc(s.trim())}</li>`).join('')}
+      <ul class="job-highlights" id="aboutRoleList">
+        <li class="ai-loading">✦ Summarising role…</li>
       </ul>
     </div>` : ''}
 
     ${job.requirements ? `
-    <div class="job-page-section">
+    <div class="job-page-section" id="requirementsSection">
       <div class="job-page-section-title">Requirements</div>
-      <ul class="job-highlights">
-        ${job.requirements.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 20).slice(0,5).map(s => `<li>${esc(s.trim())}</li>`).join('')}
+      <ul class="job-highlights" id="requirementsList">
+        <li class="ai-loading">✦ Summarising requirements…</li>
       </ul>
     </div>` : ''}
 
@@ -2738,6 +2748,58 @@ function openDetail(job) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
   window.location.hash = slug;
+
+  // AI summarisation
+  if (job.jobDesc)      summariseWithAI(job.jobDesc,       'aboutRoleList',    'role');
+  if (job.requirements) summariseWithAI(job.requirements,  'requirementsList', 'requirements');
+}
+
+async function summariseWithAI(rawText, listId, type) {
+  const el = document.getElementById(listId);
+  if (!el) return;
+
+  const systemPrompt = type === 'role'
+    ? `You are a job description editor. Extract exactly 5 clean, concise bullet points from the job description that explain what the role involves — what the person will do day-to-day. 
+Rules:
+- Write each point as a clear, standalone sentence
+- Do NOT include company intro text, location info, headers like "Who We Are", "What We Offer", "Job Area:", "Company:", or any metadata
+- Focus only on actual job responsibilities and what the candidate will work on
+- Each point should be 10–25 words
+- Return ONLY a JSON array of 5 strings, no other text. Example: ["Point one.", "Point two.", "Point three.", "Point four.", "Point five."]`
+    : `You are a job description editor. Extract exactly 5 clean, concise bullet points from this requirements section that describe what qualifications or skills are needed.
+Rules:
+- Write each point as a clear, standalone requirement
+- Do NOT include company intro text, location info, or metadata headers
+- Focus only on actual skills, experience, or qualifications required
+- Each point should be 10–25 words
+- Return ONLY a JSON array of 5 strings, no other text. Example: ["Point one.", "Point two.", "Point three.", "Point four.", "Point five."]`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: rawText.slice(0, 3000) }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const points = JSON.parse(clean);
+    if (Array.isArray(points) && points.length > 0) {
+      el.innerHTML = points.map(p => `<li>${esc(p)}</li>`).join('');
+      return;
+    }
+  } catch(e) { /* fall through to fallback */ }
+
+  // Fallback: simple sentence split
+  const sentences = rawText.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 30 && !/^(who we are|what we offer|company:|job area:|location:)/i.test(s.trim())).slice(0, 5);
+  el.innerHTML = sentences.length
+    ? sentences.map(s => `<li>${esc(s.trim())}</li>`).join('')
+    : `<li>See full description on the company's career page.</li>`;
 }
 
 function closeDetail() {
@@ -2833,9 +2895,9 @@ function closePostJobModal(e) {
     <div class="modal-icon">📡</div>
     <h2>Post a Job on Nanomeeters</h2>
     <p>Reach thousands of semiconductor engineers actively looking for their next role. We offer <strong>free job postings</strong> for employers during our launch period.</p>
-    <a class="modal-email-btn" href="mailto:contact@nanomeeters.com?subject=Job%20Posting%20Request&body=Hi%20Nanomeeters%20team%2C%0A%0AI%27d%20like%20to%20post%20a%20job%20on%20Nanomeeters.%0A%0ACompany%3A%20%0ARole%3A%20%0ALocation%3A%20%0A%0AThanks" target="_blank">
+    <a class="modal-email-btn" href="/cdn-cgi/l/email-protection#7d1e1213091c1e093d131c131210181809180f0e531e1210420e081f17181e094037121f584f4d2d120e0914131a584f4d2f180c08180e095b1f121904403514584f4d331c131210181809180f0e584f4d09181c10584f3e584d3c584d3c34584f4a19584f4d11141618584f4d0912584f4d0d120e09584f4d1c584f4d17121f584f4d1213584f4d331c131210181809180f0e53584d3c584d3c3e12100d1c1304584e3c584f4d584d3c2f121118584e3c584f4d584d3c31121e1c09141213584e3c584f4d584d3c584d3c29151c13160e" target="_blank">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="16" rx="3"/><polyline points="2,4 12,13 22,4"/></svg>
-      contact@nanomeeters.com
+      <span class="__cf_email__" data-cfemail="ee8d81809a8f8d9aae808f8081838b8b9a8b9c9dc08d8183">[email&#160;protected]</span>
     </a>
     <div class="modal-badge">✓ Free during launch</div>
   </div>
@@ -2853,7 +2915,7 @@ function closePostJobModal(e) {
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const LEGAL_CONTENT = {
   terms: {
     title: 'Terms of Service',
@@ -2924,8 +2986,4 @@ const LEGAL_CONTENT = {
       <h2>7. Children's Privacy</h2>
       <p>Nanomeeters is a professional job board intended for adult users seeking employment. We do not knowingly collect information from anyone under the age of 16. If you believe a minor has interacted with our site in a way that resulted in data collection, please contact us immediately.</p>
       <h2>8. International Users</h2>
-      <p>Nanomeeters serves users across multiple jurisdictions, including India, the USA, Germany, the Netherlands, Malaysia, and Singapore. We aim to comply with the privacy expectations and applicable laws in each region. Users in the European Union or European Economic Area should note that, given we do not collect personal data, most GDPR obligations are not triggered. However, we respect the spirit of data minimisation and purpose limitation principles. Users in Singapore should note that our practices are consistent with the Personal Data Protection Act (PDPA) — and given that we collect no personal data, the PDPA's key obligations are similarly not triggered.</p>
-      <h2>9. Your Rights</h2>
-      <p>Since we do not collect or store personal data, there is generally no personal information to access, correct, or delete. If you have concerns about any data potentially collected through server logs or believe your data may have been processed, you may contact us to request clarification or deletion, as applicable.</p>
-      <h2>10. Changes to This Privacy Policy</h2>
-      <p>We reserve the right to update this Privacy Policy at any time. Significant changes — particularly any ch
+      <p>Nanomeeters serves users across multiple jurisdictions, including India, the USA, Germany, the Netherlands, Malaysia, and Singapore. We aim to comply with the privacy expectations and applicable laws in each region. Users in the European Union or European Economic Area should note that, given we do not collect personal data, most GDPR obligations are not triggered. However, we respect the spirit of data minimisation and purpose limitation principles. Users in Singapore should note that our practices are cons
